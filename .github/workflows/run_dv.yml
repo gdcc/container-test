@@ -17,8 +17,8 @@ jobs:
           docker-compose -f "./dataverse/docker-compose-dev.yml" up -d --build
       - name: Run docker script
         run: |
-          sleep 60s
-          ./dataverse/scripts/dev/docker-final-setup.sh
+          cd ./dataverse/scripts/dev/
+          sh docker-final-setup.sh
       - name: Test container
         run: |
           sleep 120s
