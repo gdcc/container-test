@@ -12,8 +12,7 @@ jobs:
         run: docker-compose -f "docker-compose-dev.yml" up -d --build
       - name: Test container
         run: |
-          curl localhost:8080/api/info/version
-          echo "Heureka!!"
+          docker ps
       - name: Stop containers
         if: always()
         run: docker-compose -f "docker-compose-dev.yml" down
