@@ -3,7 +3,8 @@ name: Build and Test
 on: [push]
 
 jobs:
-  docker:
+  run_dataverse_dev:
+    name: "Run Dataverse development container"
     runs-on: ubuntu-latest
     steps:
       - name: Clone Dataverse
