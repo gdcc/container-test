@@ -8,10 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: "Run Dataverse Container"
-        uses: isbang/compose-action@v1.4.1
+        uses: adambirds/docker-compose-action@v1.3.0
         with:
           compose-file: "./docker-compose-dev.yml"
           down-flags: "--volumes"
-      - name: "Test Dataverse Container"
-        run: |
-          curl localhost:8080/api/info/version
+          test-command: "curl localhost:8080/api/info/version"
