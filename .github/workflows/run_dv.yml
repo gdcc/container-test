@@ -10,7 +10,7 @@ jobs:
       - name: "Run Dataverse Container"
         uses: adambirds/docker-compose-action@v1.3.0
         with:
-          compose-file: "./docker/docker-compose-dev.yml"
+          compose-file: "./.github/workflows/docker/docker-compose-dev.yml"
           down-flags: "--volumes"
           test-container: "container1"
           test-command: "curl localhost:8080/api/info/version"
