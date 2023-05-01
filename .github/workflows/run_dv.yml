@@ -12,13 +12,13 @@ jobs:
           repository: iqss/dataverse
           path: dataverse
           ref: develop
-      - name: Start containers
-        run: |
-          docker-compose -f "./dataverse/docker-compose-dev.yml" up -d --build
+      # - name: Start containers
+      #   run: |
+      #     docker-compose -f "./dataverse/docker-compose-dev.yml" up -d --build
       - name: Run docker script
         run: |
           cd ./dataverse/scripts/dev/
-          sh docker-final-setup.sh
+          bash docker-final-setup.sh
       - name: Test container
         run: |
           sleep 120s
