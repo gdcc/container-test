@@ -6,14 +6,18 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Start containers
-        run: docker-compose -f "docker-compose-dev.yml" up -d --build
-      - name: Test container
-        run: |
-          sleep 120s
-          curl localhost:8080/api/info/version
-      - name: Stop containers
-        if: always()
-        run: docker-compose -f "docker-compose-dev.yml" down
+      - name: Clone Dataverse repository
+        uses: actions/checkout@develop
+        with:
+          name: IQSS/dataverse
+      # - name: Checkout
+      #   uses: actions/checkout@v1
+      # - name: Start containers
+      #   run: docker-compose -f "docker-compose-dev.yml" up -d --build
+      # - name: Test container
+      #   run: |
+      #     sleep 120s
+      #     curl localhost:8080/api/info/version
+      # - name: Stop containers
+      #   if: always()
+      #   run: docker-compose -f "docker-compose-dev.yml" down
