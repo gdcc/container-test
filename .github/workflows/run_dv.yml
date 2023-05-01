@@ -6,12 +6,15 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone supercharge docs repository
+      - name: Clone Dataverse
         uses: actions/checkout@v2
         with:
           repository: iqss/dataverse
           path: dataverse
           ref: develop
+      - name: Test clone
+        run: |
+          ls
       # - name: Checkout
       #   uses: actions/checkout@v1
       # - name: Start containers
