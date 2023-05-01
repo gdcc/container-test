@@ -27,4 +27,4 @@ jobs:
           curl localhost:8080/api/metadatablocks
       - name: Stop containers
         if: always()
-        run: docker-compose -f "docker-compose-dev.yml" down
+        run: docker-compose -f "./dataverse/docker-compose-dev.yml" down
