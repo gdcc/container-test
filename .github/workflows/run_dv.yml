@@ -3,14 +3,17 @@ name: Build and Test
 on: [push]
 
 jobs:
-  run_dataverse:
+  docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: "Run Dataverse Container"
-        uses: adambirds/docker-compose-action@v1.3.0
-        with:
-          compose-file: "./docker-compose-dev.yml"
-          down-flags: "--volumes"
-          test-container: "container1"
-          test-command: "curl localhost:8080/api/info/version"
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Start containers
+        run: docker-compose -f "docker-compose-dev.yml" up -d --build
+      - name: Test container
+        run: |
+          curl localhost:8080/api/info/version
+          echo "Heureka!!"
+      - name: Stop containers
+        if: always()
+        run: docker-compose -f "docker-compose-dev.yml" down
