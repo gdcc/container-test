@@ -17,7 +17,10 @@ jobs:
         run: |
           docker-compose -f "./dataverse/docker-compose-dev.yml" up -d --build
       - name: Wait for container setup
-        run: sleep 60s
+        uses: cygnetdigital/wait_for_response@v2.0.0
+        with:
+          url: 'http://localhost:8089/'
+          responseCode: '200'
       - name: Run docker script
         run: |
           cd ./dataverse
