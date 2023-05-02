@@ -21,6 +21,7 @@ jobs:
         with:
           url: 'http://localhost:8080/api/info/version'
           responseCode: '200'
+          timeout: 120000
       - name: Run docker script
         run: |
           cd ./dataverse
