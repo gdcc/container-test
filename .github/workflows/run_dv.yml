@@ -19,7 +19,7 @@ jobs:
       - name: Wait for container setup
         uses: cygnetdigital/wait_for_response@v2.0.0
         with:
-          url: 'http://localhost:8089/'
+          url: 'http://localhost:8080/api/info/version'
           responseCode: '200'
       - name: Run docker script
         run: |
