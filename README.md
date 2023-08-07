@@ -1,3 +1,5 @@
+# For now, some testing is happening at https://github.com/pdurbin/dataverse-api-test-runner
+
 # container-test
 
 Testing GitHub Actions that spin up Dataverse in containers for API testing
