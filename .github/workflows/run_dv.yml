@@ -1,0 +1,35 @@
+name: Build and Test
+
+on: [push]
+
+jobs:
+  run_dataverse_dev:
+    name: "Run Dataverse development container"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Dataverse
+        uses: actions/checkout@v2
+        with:
+          repository: iqss/dataverse
+          path: dataverse
+          ref: develop
+      - name: Start containers
+        run: |
+          docker-compose -f "./dataverse/docker-compose-dev.yml" up -d --build
+      - name: Wait for container setup
+        uses: cygnetdigital/wait_for_response@v2.0.0
+        with:
+          url: 'http://localhost:8080/api/info/version'
+          responseCode: '200'
+          timeout: 120000
+      - name: Run docker script
+        run: |
+          cd ./dataverse
+          bash ./scripts/dev/docker-final-setup.sh
+          cd ..
+      - name: Test container
+        run: |
+          curl localhost:8080/api/metadatablocks
+      - name: Stop containers
+        if: always()
+        run: docker-compose -f "./dataverse/docker-compose-dev.yml" down
